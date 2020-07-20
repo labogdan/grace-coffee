@@ -1,0 +1,39 @@
+Map(
+  [
+    {
+      "beneficiary_id": "CO038000089",
+      "name": "Killian",
+      "age": 15,
+      "date_of_birth": "10/21/2004",
+      "gender": "M",
+      "country": "Colombia",
+      "language_spoken": "Spanish",
+      "no_of_siblings": 3,
+      "marital_status_of_parents": "Never Married",
+      "in_a_highly_vulnerable_area": "F",
+      "grade": "7th",
+      "favorite_subjects_in_school": "Math",
+      "hobbies": "Group Games",
+      "child_image": "https://media.ci.org/w_150/v1576509795/ChildPhotos/Published/04945833_89e25f.jpg"
+    },
+    {
+      "beneficiary_id": "CO038500139",
+      "name": "David",
+      "age": 10,
+      "date_of_birth": "10/25/2009",
+      "gender": "M",
+      "country": "Colombia",
+      "language_spoken": "Spanish",
+      "no_of_siblings": 1,
+      "marital_status_of_parents": "Never Married",
+      "in_a_highly_vulnerable_area": "F",
+      "grade": "Kindergarten",
+      "favorite_subjects_in_school": "Art",
+      "hobbies": "Ball Games",
+      "child_image": "https://media.ci.org/w_150/v1570047039/ChildPhotos/Published/05620066_5a184e.jpg"
+    }
+  ],
+  Lambda("child",
+    Create(Collection("Child"), { data: Var("child") })
+  )
+);

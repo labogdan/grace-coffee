@@ -30,5 +30,18 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "Fauna",
+        fieldName: "fauna",
+        url: "https://graphql.fauna.com/graphql",
+        headers: {
+          Authorization: "Bearer fnADxM7bVIACEl3pJAy2ZcdANl2aUpnmSSj5OeaG",
+        },
+      },
+    }
+
   ],
 }

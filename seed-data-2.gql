@@ -1,0 +1,25 @@
+mutation {
+  createCustomer(data: {
+    customer_id: "235184188140028419"
+    child: { connect: "CO038000089" }
+  }) {
+    customer_id
+    child {
+      name
+    }
+  }
+}
+
+
+
+mutation createACustomer {
+  createCustomer(data: {
+    customer_id: "235184188140028419"
+    child: { connect: "CO038000089" }
+  }) {
+    customer_id
+    child {
+      name
+    }
+  }
+}

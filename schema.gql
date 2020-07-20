@@ -1,0 +1,27 @@
+type Child {
+  beneficiary_id: String!
+  name: String
+  age: Int
+  date_of_birth: Int
+  gender: String
+  country: String
+  language_spoken: String
+  no_of_siblings: Int
+  marital_status_of_parents: String
+  in_a_highly_vulnerable_area: String
+  grade: String
+  favorite_subjects_in_school: String
+  hobbies: String
+  child_image: String
+  customers_assigned: [Customer] @relation
+}
+
+type Customer {
+  customer_id: String!
+  child: Child
+  amount_pleged: Int
+}
+
+type Query {
+  allChildren: [Child]
+}
