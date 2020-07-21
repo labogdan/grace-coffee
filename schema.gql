@@ -13,12 +13,12 @@ type Child {
   favorite_subjects_in_school: String
   hobbies: String
   child_image: String
-  customers_assigned: [Customer] @relation
+  customers_assigned: [Customer!] @relation
 }
 
 type Customer {
   customer_id: String!
-  child: Child
+  child: Child!
   amount_pleged: Int
 }
 

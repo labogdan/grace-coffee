@@ -17,9 +17,9 @@ const IndexPage = ({ data }) => (
     </div>
 
       <ul>
-            {data.fauna.allChildren.data.map(child => (
-              <li key={child.beneficiary_id}>{child.name}</li>
-            ))}
+
+              <li>{data.fauna.findCustomerByID.child.name}</li>
+
       </ul>
 
 
@@ -28,6 +28,20 @@ const IndexPage = ({ data }) => (
   </Layout>
 )
 
+
+export const query = graphql`
+{
+  fauna {
+    findCustomerByID(id: 271660898083406336) {
+      child {
+        name
+      }
+    }
+  }
+}
+`
+
+/*
 export const query = graphql`
 {
   fauna {
@@ -37,5 +51,5 @@ export const query = graphql`
   }
 }
 `
-
+*/
 export default IndexPage
