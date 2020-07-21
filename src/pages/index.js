@@ -12,8 +12,6 @@ import SEO from "../components/seo"
 
 const IndexPage = ({ data }) => {
 
-  
-
   return (
     <Layout>
       <SEO title="Home" />
@@ -30,7 +28,7 @@ const IndexPage = ({ data }) => {
         type="button"
         id="launch"
         value="Launch Importer"
-        onClick={launch}
+        
       />
 
       <Link to="/page-2/">Go to page 2</Link> <br />
