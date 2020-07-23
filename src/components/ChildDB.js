@@ -4,7 +4,6 @@ import faunadb from 'faunadb'
 import { Container, Row, Col } from 'react-grid';
 
 
-
 const client = new faunadb.Client({ secret: "fnADxM7bVIACEl3pJAy2ZcdANl2aUpnmSSj5OeaG" })
 const q = faunadb.query
 
@@ -23,6 +22,8 @@ class ChildDB extends Component {
     this.setState({child: null});
     this.getChildByBen()
   }
+
+
 
 
   getChildByBen() {

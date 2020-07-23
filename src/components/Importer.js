@@ -3,6 +3,8 @@ import { Link } from "gatsby"
 
 import FlatfileImporter from "flatfile-csv-importer";
 
+import createChild from "./CreateChild"
+
 const LICENSE_KEY = "5b779f83-e8e9-4b25-8316-bbbcfc33bb1e"
 
 class Importer extends Component {
@@ -72,8 +74,14 @@ class Importer extends Component {
       this.importer
         .requestDataFromUser()
         .then(results => {
+          this.importer.displayLoader()
           // Tell us what you want to happen to this data
           console.log(results.validData)
+          createChild(results.validData)
+          setTimeout(() => { // simulation of handling results asynchronously
+            this.importer.displaySuccess('Success!')
+          }, 1500)
+
         })
         .catch(function(error) {
           console.info(error || "window close");
