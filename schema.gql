@@ -25,9 +25,9 @@ type Query {
   allChildren: [Child]
 }
 
-type message {
+type Message {
   beneficiary_id: String!
-  title: String
+  subject: String
   msg: String
   timestamp: Int
 }

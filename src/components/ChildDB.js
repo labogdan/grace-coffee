@@ -8,13 +8,10 @@ import { ImageCrop, RoundImage, P, LightH1 } from '../css/childcss'
 const client = new faunadb.Client({ secret: `${process.env.FAUNADB_KEY}` })
 const q = faunadb.query
 
-const beneficiary_id = "CO038000089"
-
-
 
 class ChildDB extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
 
@@ -24,7 +21,7 @@ class ChildDB extends Component {
   }
   async componentDidMount() {
     this.setState({child: null});
-    this.getChildByBeneficiary(beneficiary_id)
+    this.getChildByBeneficiary(this.props.beneficiary_id)
   }
 
 
