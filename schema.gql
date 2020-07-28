@@ -13,7 +13,6 @@ type Child {
   favorite_subjects_in_school: String
   hobbies: String
   child_image: String
-  customers_assigned: [Customer!] @relation
 }
 
 type Customer {
@@ -24,4 +23,11 @@ type Customer {
 
 type Query {
   allChildren: [Child]
+}
+
+type message {
+  beneficiary_id: String!
+  title: String
+  msg: String
+  timestamp: Int
 }

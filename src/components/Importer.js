@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from "gatsby"
 
 import FlatfileImporter from "flatfile-csv-importer";
 
 import createChild from "./CreateChild"
 
-const LICENSE_KEY = "5b779f83-e8e9-4b25-8316-bbbcfc33bb1e"
+const LICENSE_KEY = `${process.env.FLATFILE_KEY}`
 
 class Importer extends Component {
   constructor() {

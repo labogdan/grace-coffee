@@ -1,13 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import DisplayChild from './DisplayChild';
-
-import FaunaTest from './FaunaTest';
-
-
 import Layout from "../components/layout"
-import Image from "../components/image"
+
 import SEO from "../components/seo"
 
 

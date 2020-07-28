@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { Link } from "gatsby"
 import faunadb from 'faunadb'
-import { Container, Row, Col } from 'react-grid';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+
+import { ImageCrop, RoundImage, P, LightH1 } from '../css/childcss'
 
 
-const client = new faunadb.Client({ secret: "fnADxM7bVIACEl3pJAy2ZcdANl2aUpnmSSj5OeaG" })
+const client = new faunadb.Client({ secret: `${process.env.FAUNADB_KEY}` })
 const q = faunadb.query
+
+const beneficiary_id = "CO038000089"
+
 
 
 class ChildDB extends Component {
@@ -20,17 +24,17 @@ class ChildDB extends Component {
   }
   async componentDidMount() {
     this.setState({child: null});
-    this.getChildByBen()
+    this.getChildByBeneficiary(beneficiary_id)
   }
 
 
 
 
-  getChildByBen() {
+  getChildByBeneficiary(beneficiary_id) {
     client.query(
       q.Get(
       q.Match(
-        q.Index('childByBeneficiary'), "CO038000089")))
+        q.Index('childByBeneficiary'), beneficiary_id)))
 
       .then(response => {
         const child = response.data
@@ -52,54 +56,58 @@ class ChildDB extends Component {
 
     return (
       <>
-
-      <Container>
+        <Grid>
         <Row>
-          <Col><img src={child.child_image} /></Col>
-          <Col>
-            <div style={{ float: 'left', width: '50%' }}><b>Age</b></div>
-            <div style={{ float: 'left' }}>{child.age}</div>
-
-            <div style={{ float: 'left', width: '50%' }}><b>Birthday</b></div>
-            <div style={{ float: 'left' }}>{child.date_of_birth}</div>
-
-            <div style={{ float: 'left', width: '50%' }}><b>Gender</b></div>
-            <div style={{ float: 'left' }}>{child.gender}</div>
-
-            <div style={{ float: 'left', width: '50%' }}><b>Country</b></div>
-            <div style={{ float: 'left' }}>{child.country}</div>
-
-            <div style={{ float: 'left', width: '50%' }}><b>Language</b></div>
-            <div style={{ float: 'left' }}>{child.language_spoken}</div>
-
-            <div style={{ float: 'left', width: '50%' }}><b>Siblings</b></div>
-            <div style={{ float: 'left' }}>{child.no_of_siblings}</div>
-          </Col>
-          <Col>
-            <div style={{ float: 'left', width: '50%' }}><b>Marital Status</b></div>
-            <div style={{ float: 'left' }}>{child.marital_status_of_parents}</div>
-
-            <div style={{ float: 'left', width: '60%' }}><b>Highly Vulnerable</b></div>
-            <div style={{ float: 'left' }}>{(child.in_a_highly_vulnerable_area==='F'?'No':'Yes')}</div>
-
-            <div style={{ float: 'left', width: '50%' }}><b>Grade</b></div>
-            <div style={{ float: 'left' }}>{child.grade}</div>
-
-            <div style={{ float: 'left', width: '50%' }}><b>Fav Subject</b></div>
-            <div style={{ float: 'left' }}>{child.favorite_subjects_in_school}</div>
-
-            <div style={{ float: 'left', width: '50%' }}><b>Hobbies</b></div>
-            <div style={{ float: 'left' }}>{child.hobbies}</div>
+          <Col mdOffset={4}>
+            <LightH1>{child.name}</LightH1>
           </Col>
         </Row>
-      </Container>
-
-        <ul>
-        <li>{child.beneficiary_id}</li>
-        <li>{child.name}</li>
-
-
-        </ul>
+          <Row>
+            <Col md={4}>
+              <ImageCrop>
+                <RoundImage src={child.child_image} alt={child.name} />
+              </ImageCrop>
+            </Col>
+            <Col md={4}>
+              <Row>
+                <Col xs={6}>
+                  <P><b>Age</b></P>
+                  <P><b>Birthday</b></P>
+                  <P><b>Gender</b></P>
+                  <P><b>Country</b></P>
+                  <P><b>Language</b></P>
+                  <P><b>Siblings</b></P>
+                </Col>
+                <Col xs={6}>
+                  <P>{child.age}</P>
+                  <P>{child.date_of_birth}</P>
+                  <P>{child.gender}</P>
+                  <P>{child.country}</P>
+                  <P>{child.language_spoken}</P>
+                  <P>{child.no_of_siblings}</P>
+                </Col>
+              </Row>
+            </Col>
+            <Col md={4}>
+            <Row>
+              <Col xs={6}>
+                <P><b>Marital Status</b></P>
+                <P><b>Highly Vulnerable</b></P>
+                <P><b>Grade</b></P>
+                <P><b>Fav Subject</b></P>
+                <P><b>Hobbies</b></P>
+              </Col>
+              <Col xs={6}>
+                <P>{child.marital_status_of_parents}</P>
+                <P>{child.in_a_highly_vulnerable_area}</P>
+                <P>{child.grade}</P>
+                <P>{child.favorite_subjects_in_school}</P>
+                <P>{child.hobbies}</P>
+              </Col>
+            </Row>
+            </Col>
+          </Row>
+        </Grid>
       </>
     )
   }

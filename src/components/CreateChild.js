@@ -1,6 +1,6 @@
 import faunadb from 'faunadb'
 
-const client = new faunadb.Client({ secret: "fnADxM7bVIACEl3pJAy2ZcdANl2aUpnmSSj5OeaG" })
+const client = new faunadb.Client({ secret: `${process.env.FAUNADB_KEY}` })
 const q = faunadb.query
 
 const createChild = (obj) => client.query(
