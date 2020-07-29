@@ -1,5 +1,6 @@
 import React from "react"
 import Importer from '../components/Importer';
+import MessagePDF from '../components/MessagePDF';
 
 import Layout from "../components/layout"
 
@@ -14,6 +15,7 @@ const ImportPage = () => {
 
       <Importer />
 
+      <MessagePDF beneficiary_id="CO038000089" />
 
     </Layout>
   )

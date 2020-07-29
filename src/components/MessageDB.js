@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import faunadb from 'faunadb'
-import { Grid, Row, Col } from 'react-flexbox-grid';
+
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
 
 import { ImageCrop, RoundImage, P, LightH1 } from '../css/childcss'
 
@@ -32,8 +39,11 @@ class MessageDB extends Component {
 
  handleSubmit(event) {
    event.preventDefault()
-   this.createMessage()
-
+   if (this.state.subject.length <= 0 || this.state.msg.length <= 0) {
+    alert('please enter in a message')
+   } else {
+     this.createMessage()
+   }
  }
 
 
@@ -63,31 +73,35 @@ class MessageDB extends Component {
   render () {
     return (
       <>
-        <Grid>
+      <Card>
+        <Card.Body>
+
+        <Container>
           <Row>
-            <Col mdOffset={4}>
-              <LightH1>Input a message...</LightH1>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  Subject
-                  <input
+            <Col>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Subject</Form.Label>
+                  <Form.Control
+                    as="input"
                     type="text"
                     name="subject"
                     value={this.state.subject}
                     onChange={this.handleInputChange}
                   />
-                </label>
-                <label>
-                  Message
-
-                  <textarea
-                    name="msg"
-                    value={this.state.msg}
-                    onChange={this.handleInputChange}
-                  />
-                </label>
-                <button type="submit">Submit</button>
-            </form>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Message</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="msg"
+                      rows="4"
+                      value={this.state.msg}
+                      onChange={this.handleInputChange}
+                    />
+                </Form.Group>
+                <Button type="submit" block>Submit</Button>
+            </Form>
             </Col>
           </Row>
           <Row>
@@ -96,7 +110,10 @@ class MessageDB extends Component {
               <div>{this.state.msg}</div>
             </Col>
           </Row>
-        </Grid>
+        </Container>
+        </Card.Body>
+      </Card>
+
       </>
     )
   }

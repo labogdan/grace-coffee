@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import faunadb from 'faunadb'
-import { Grid, Row, Col } from 'react-flexbox-grid';
+
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import { ImageCrop, RoundImage, P, LightH1 } from '../css/childcss'
 
@@ -14,7 +18,6 @@ class ChildDB extends Component {
     super(props)
 
     this.state = {
-
       isDataFetched: false
     };
 
@@ -53,9 +56,11 @@ class ChildDB extends Component {
 
     return (
       <>
-        <Grid>
+      <Card>
+        <Card.Body>
+        <Container>
         <Row>
-          <Col mdOffset={4}>
+          <Col md={{offset:4}}>
             <LightH1>{child.name}</LightH1>
           </Col>
         </Row>
@@ -104,7 +109,9 @@ class ChildDB extends Component {
             </Row>
             </Col>
           </Row>
-        </Grid>
+        </Container>
+        </Card.Body>
+          </Card>
       </>
     )
   }

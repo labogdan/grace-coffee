@@ -1,15 +1,50 @@
 import React, { Component } from 'react'
 import faunadb from 'faunadb'
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button';
+
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer'
 
 import { ImageCrop, RoundImage, P, LightH1 } from '../css/childcss'
 
 const client = new faunadb.Client({ secret: `${process.env.FAUNADB_KEY}` })
 const q = faunadb.query
 
+const styles = StyleSheet.create({
+  section: { marginBottom: 30 },
+  bold: { fontWeight: 'bold' }
+});
+
+export class MyDoc extends Component {
+  constructor(props) {
+    super(props)
+
+  }
+  render () {
+    return (
+      <Document>
+        <Page>
+        {this.props.data.messages.map(message => (
+          <View style={styles.section}>
+            <Text style={styles.bold}>{message.data.title}</Text>
+            <Text>{message.data.msg}</Text>
+          </View>
+        ))}
+        </Page>
+      </Document>
+    )
+  }
+}
+
+
 class MessagePDF extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      isDataFetched: false
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -30,9 +65,14 @@ class MessagePDF extends Component {
 
  }
 
- getMessagesByBeneficiary() {
 
-// Map(Paginate(Match(Index("messagesByBeneficiary"), "CO038000089")),Lambda("Message",Get(Var("Message"))))
+renderMessages(data) {
+  const items = data.map((message, key) =>
+        <li key={message.subject}>{message.msg}</li>
+    );
+}
+
+ getMessagesByBeneficiary() {
    client.query(
      q.Map(
        q.Paginate(
@@ -42,8 +82,12 @@ class MessagePDF extends Component {
      )
    )
      .then(response => {
-       const message = response
+       const message = response.data
        console.log(message)
+       this.setState({
+         messages: message,
+         isDataFetched: true
+       })
 
        return message
      })
@@ -51,22 +95,45 @@ class MessagePDF extends Component {
  }
 
   render () {
-    return (
-      <>
-        <Grid>
-          <Row>
-            <Col mdOffset={4}>
-              <LightH1>Input a message...</LightH1>
-              <form onSubmit={this.handleSubmit}>
 
-                <button type="submit">Submit</button>
-            </form>
-            </Col>
-          </Row>
+    if(!this.state.isDataFetched) {
+      return (
+        <>
+          <Container>
+            <Row>
+              <Col>
+                <h2>Generate PDF from messages</h2>
+                <form onSubmit={this.handleSubmit}>
+                  <Button type="submit">Submit</Button>
+              </form>
+              </Col>
+            </Row>
+          </Container>
 
-        </Grid>
-      </>
-    )
+
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Container>
+            <Row>
+              <Col>
+              <Button>
+                <PDFDownloadLink
+                  document={<MyDoc data={this.state} />}
+                  fileName="somename.pdf">
+                  {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+                </PDFDownloadLink>
+              </Button>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      )
+    }
+
+
   }
 }
 
