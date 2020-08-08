@@ -20,4 +20,9 @@ const LightH1 = styled.h1`
   font-weight: 300;
 `
 
-export { ImageCrop, RoundImage, P, LightH1 }
+const BMarBottom = styled.b`
+  display: block;
+  margin-bottom: 10px;
+`
+
+export { ImageCrop, RoundImage, P, LightH1, BMarBottom }

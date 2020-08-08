@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 
-import { ImageCrop, RoundImage, P, LightH1 } from '../css/childcss'
+import { ImageCrop, RoundImage, P, LightH1, BMarBottom } from '../css/childcss'
 
 const client = new faunadb.Client({ secret: `${process.env.FAUNADB_KEY}` })
 const q = faunadb.query
@@ -73,9 +73,10 @@ class MessageDB extends Component {
   render () {
     return (
       <>
+
+      <BMarBottom>Leave a message for your sponsored child:</BMarBottom>    
       <Card>
         <Card.Body>
-
         <Container>
           <Row>
             <Col>

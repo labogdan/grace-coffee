@@ -61,7 +61,7 @@ class ChildDB extends Component {
         <Container>
         <Row>
           <Col md={{offset:4}}>
-            <LightH1>{child.name}</LightH1>
+            <h1>{child.name}</h1>
           </Col>
         </Row>
           <Row>
@@ -72,41 +72,61 @@ class ChildDB extends Component {
             </Col>
             <Col md={4}>
               <Row>
-                <Col xs={6}>
-                  <P><b>Age</b></P>
-                  <P><b>Birthday</b></P>
-                  <P><b>Gender</b></P>
-                  <P><b>Country</b></P>
-                  <P><b>Language</b></P>
-                  <P><b>Siblings</b></P>
-                </Col>
-                <Col xs={6}>
-                  <P>{child.age}</P>
-                  <P>{child.date_of_birth}</P>
-                  <P>{child.gender}</P>
-                  <P>{child.country}</P>
-                  <P>{child.language_spoken}</P>
-                  <P>{child.no_of_siblings}</P>
-                </Col>
+                <Col xs={6}><b>Age</b></Col>
+                <Col xs={6}>{child.age}</Col>
+              </Row>
+
+              <Row>
+                <Col xs={6}><b>Birthday</b></Col>
+                <Col xs={6}>{child.date_of_birth}</Col>
+              </Row>
+
+              <Row>
+                <Col xs={6}><b>Gender</b></Col>
+                <Col xs={6}>{child.gender}</Col>
+              </Row>
+
+              <Row>
+                <Col xs={6}><b>Country</b></Col>
+                <Col xs={6}>{child.country}</Col>
+              </Row>
+
+              <Row>
+                <Col xs={6}><b>Language</b></Col>
+                <Col xs={6}>{child.language_spoken}</Col>
+              </Row>
+
+              <Row>
+                <Col xs={6}><b>Siblings</b></Col>
+                <Col xs={6}>{child.no_of_siblings}</Col>
               </Row>
             </Col>
             <Col md={4}>
             <Row>
-              <Col xs={6}>
-                <P><b>Marital Status</b></P>
-                <P><b>Highly Vulnerable</b></P>
-                <P><b>Grade</b></P>
-                <P><b>Fav Subject</b></P>
-                <P><b>Hobbies</b></P>
-              </Col>
-              <Col xs={6}>
-                <P>{child.marital_status_of_parents}</P>
-                <P>{child.in_a_highly_vulnerable_area}</P>
-                <P>{child.grade}</P>
-                <P>{child.favorite_subjects_in_school}</P>
-                <P>{child.hobbies}</P>
-              </Col>
+              <Col xs={6}><b>Marital Status</b></Col>
+              <Col xs={6}>{child.marital_status_of_parents}</Col>
             </Row>
+
+            <Row>
+              <Col xs={6}><b>Vulnerable</b></Col>
+              <Col xs={6}>{(child.in_a_highly_vulnerable_area)?'Yes':'No'}</Col>
+            </Row>
+
+            <Row>
+              <Col xs={6}><b>Grade</b></Col>
+              <Col xs={6}>{child.grade}</Col>
+            </Row>
+
+            <Row>
+              <Col xs={6}><b>Fav Subject</b></Col>
+              <Col xs={6}>{child.favorite_subjects_in_school}</Col>
+            </Row>
+
+            <Row>
+              <Col xs={6}><b>Hobbies</b></Col>
+              <Col xs={6}>{child.hobbies}</Col>
+            </Row>
+
             </Col>
           </Row>
         </Container>
