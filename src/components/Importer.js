@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Button from 'react-bootstrap/Button';
+
 import FlatfileImporter from "flatfile-csv-importer";
 
 import createChild from "./CreateChild"
@@ -90,16 +92,9 @@ class Importer extends Component {
   render () {
 
     return (
-      <>
-        <div>hello</div>
-        <input
-            type="button"
-            id="launch"
-            value="Launch Importer"
-            onClick={this.launch}
-            />
-
-      </>
+      <Button onClick={this.launch}>
+        Launch Importer
+      </Button>
     )
   }
 }

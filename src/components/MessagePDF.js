@@ -98,38 +98,19 @@ renderMessages(data) {
 
     if(!this.state.isDataFetched) {
       return (
-        <>
-          <Container>
-            <Row>
-              <Col>
-                <h2>Generate PDF from messages</h2>
-                <form onSubmit={this.handleSubmit}>
-                  <Button type="submit">Submit</Button>
-              </form>
-              </Col>
-            </Row>
-          </Container>
-
-
-        </>
+        <form onSubmit={this.handleSubmit}>
+            <Button type="submit">Submit</Button>
+        </form>
       )
     } else {
       return (
-        <>
-          <Container>
-            <Row>
-              <Col>
-              <Button>
-                <PDFDownloadLink
-                  document={<MyDoc data={this.state} />}
-                  fileName="somename.pdf">
-                  {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
-                </PDFDownloadLink>
-              </Button>
-              </Col>
-            </Row>
-          </Container>
-        </>
+
+        <PDFDownloadLink
+          document={<MyDoc data={this.state} />}
+          fileName="somename.pdf">
+          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+        </PDFDownloadLink>
+
       )
     }
 
