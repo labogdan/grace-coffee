@@ -27,6 +27,7 @@ type Query {
 
 type Message {
   beneficiary_id: String!
+  name: String!
   subject: String
   msg: String
   timestamp: Int

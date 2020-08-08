@@ -12,7 +12,7 @@ import Layout from "../components/layout"
 
 import SEO from "../components/seo"
 
-const ImportPage = () => {
+const AdminPage = () => {
 
   return (
     <Layout>
@@ -56,4 +56,4 @@ const ImportPage = () => {
   )
 }
 
-export default ImportPage
+export default AdminPage

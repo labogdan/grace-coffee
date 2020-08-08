@@ -13,9 +13,9 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="Home" />
       <h1>Grace Coffee</h1>
-      <Link to="/ImportPage">Data Importer</Link>
+      <Link to="/AdminPage">Admin View</Link>
       <br /><br />
-      <Link to="/ChildPage">Child Display</Link>
+      <Link to="/ChildPage">Child View</Link>
     </Layout>
   )
 }

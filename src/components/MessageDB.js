@@ -53,7 +53,8 @@ class MessageDB extends Component {
         q.Collection('Message'),
           {
             data: {
-              beneficiary_id: this.props.beneficiary_id,
+              beneficiary_id: this.props.child.beneficiary_id,
+              name: this.props.child.name,
               title: this.state.subject,
               msg: this.state.msg
             }
@@ -74,7 +75,7 @@ class MessageDB extends Component {
     return (
       <>
 
-      <BMarBottom>Leave a message for your sponsored child:</BMarBottom>    
+      <BMarBottom>Leave a message for your sponsored child:</BMarBottom>
       <Card>
         <Card.Body>
         <Container>

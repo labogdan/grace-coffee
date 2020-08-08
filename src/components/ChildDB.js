@@ -9,27 +9,28 @@ import Col from 'react-bootstrap/Col'
 import { ImageCrop, RoundImage, P, LightH1 } from '../css/childcss'
 
 
-const client = new faunadb.Client({ secret: `${process.env.FAUNADB_KEY}` })
-const q = faunadb.query
+//const client = new faunadb.Client({ secret: `${process.env.FAUNADB_KEY}` })
+//const q = faunadb.query
 
 
 class ChildDB extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
+/*    this.state = {
       isDataFetched: false
-    };
+    };*/
 
   }
+  /*
   async componentDidMount() {
     this.setState({child: null});
     this.getChildByBeneficiary(this.props.beneficiary_id)
-  }
+  }*/
 
 
 
-
+/*
   getChildByBeneficiary(beneficiary_id) {
     client.query(
       q.Get(
@@ -47,23 +48,24 @@ class ChildDB extends Component {
         return child
       })
       .catch(error => console.warn('error', error.message))
-  }
+  }*/
 
   render () {
-    if(!this.state.isDataFetched) return null;
-    const {child} = this.state || {};
+
+    const {child} = this.props || {};
 
 
     return (
       <>
-      <Card>
+
+
+      <Card bg={'light'}>
+        <Card.Header>
+          <Card.Title><h2>{child.name}</h2></Card.Title>
+        </Card.Header>
         <Card.Body>
         <Container>
-        <Row>
-          <Col md={{offset:4}}>
-            <h1>{child.name}</h1>
-          </Col>
-        </Row>
+        
           <Row>
             <Col md={4}>
               <ImageCrop>
