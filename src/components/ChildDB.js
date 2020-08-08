@@ -65,7 +65,7 @@ class ChildDB extends Component {
         </Card.Header>
         <Card.Body>
         <Container>
-        
+
           <Row>
             <Col md={4}>
               <ImageCrop>
@@ -74,58 +74,58 @@ class ChildDB extends Component {
             </Col>
             <Col md={4}>
               <Row>
-                <Col xs={6}><b>Age</b></Col>
+                <Col xs={6}><b>Age:</b></Col>
                 <Col xs={6}>{child.age}</Col>
               </Row>
 
               <Row>
-                <Col xs={6}><b>Birthday</b></Col>
+                <Col xs={6}><b>Birthday:</b></Col>
                 <Col xs={6}>{child.date_of_birth}</Col>
               </Row>
 
               <Row>
-                <Col xs={6}><b>Gender</b></Col>
+                <Col xs={6}><b>Gender:</b></Col>
                 <Col xs={6}>{child.gender}</Col>
               </Row>
 
               <Row>
-                <Col xs={6}><b>Country</b></Col>
+                <Col xs={6}><b>Country:</b></Col>
                 <Col xs={6}>{child.country}</Col>
               </Row>
 
               <Row>
-                <Col xs={6}><b>Language</b></Col>
+                <Col xs={6}><b>Language:</b></Col>
                 <Col xs={6}>{child.language_spoken}</Col>
               </Row>
 
               <Row>
-                <Col xs={6}><b>Siblings</b></Col>
+                <Col xs={6}><b>Siblings:</b></Col>
                 <Col xs={6}>{child.no_of_siblings}</Col>
               </Row>
             </Col>
             <Col md={4}>
             <Row>
-              <Col xs={6}><b>Marital Status</b></Col>
+              <Col xs={6}><b>Marital Status:</b></Col>
               <Col xs={6}>{child.marital_status_of_parents}</Col>
             </Row>
 
             <Row>
-              <Col xs={6}><b>Vulnerable</b></Col>
+              <Col xs={6}><b>Vulnerable:</b></Col>
               <Col xs={6}>{(child.in_a_highly_vulnerable_area)?'Yes':'No'}</Col>
             </Row>
 
             <Row>
-              <Col xs={6}><b>Grade</b></Col>
+              <Col xs={6}><b>Grade:</b></Col>
               <Col xs={6}>{child.grade}</Col>
             </Row>
 
             <Row>
-              <Col xs={6}><b>Fav Subject</b></Col>
+              <Col xs={6}><b>Fav Subject:</b></Col>
               <Col xs={6}>{child.favorite_subjects_in_school}</Col>
             </Row>
 
             <Row>
-              <Col xs={6}><b>Hobbies</b></Col>
+              <Col xs={6}><b>Hobbies:</b></Col>
               <Col xs={6}>{child.hobbies}</Col>
             </Row>
 
