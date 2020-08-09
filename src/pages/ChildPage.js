@@ -26,7 +26,7 @@ class ChildPage extends Component {
 
   async componentDidMount() {
     this.setState({child: null});
-    this.getChildByBeneficiary("CO038000089")
+    this.getChildByBeneficiary("CO038500530")
   }
 
   getChildByBeneficiary(beneficiary_id) {
@@ -59,7 +59,7 @@ class ChildPage extends Component {
         />
         <br />
         <MessageDB
-          child={child} 
+          child={child}
         />
       </Layout>
     )

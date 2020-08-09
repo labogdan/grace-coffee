@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
+import Modal from 'react-bootstrap/Modal'
 
 
 import { ImageCrop, RoundImage, P, LightH1, BMarBottom } from '../css/childcss'
@@ -21,10 +23,29 @@ class MessageDB extends Component {
     this.state = {
       subject: "",
       msg: "",
+      showSuccess: false,
+      showError: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleShow = this.handleShow.bind(this);
+  }
+
+
+  handleClose() {
+    this.setState({
+      show: false,
+      subject: '',
+      msg: ''
+    })
+  }
+
+  handleShow() {
+    this.setState({
+      show: true
+    })
   }
 
   handleInputChange(event) {
@@ -42,6 +63,7 @@ class MessageDB extends Component {
    if (this.state.subject.length <= 0 || this.state.msg.length <= 0) {
     alert('please enter in a message')
    } else {
+     this.handleShow()
      this.createMessage()
    }
  }
@@ -55,6 +77,7 @@ class MessageDB extends Component {
             data: {
               beneficiary_id: this.props.child.beneficiary_id,
               name: this.props.child.name,
+              date_of_birth: this.props.child.date_of_birth,
               title: this.state.subject,
               msg: this.state.msg
             }
@@ -74,6 +97,26 @@ class MessageDB extends Component {
   render () {
     return (
       <>
+
+
+      <Modal
+        centered
+        show={this.state.show}
+        onHide={this.handleClose}
+      >
+              <Modal.Header closeButton>
+              </Modal.Header>
+              <Modal.Body>
+                  Your message has been sent!
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={this.handleClose}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+
 
       <BMarBottom>Leave a message for your sponsored child:</BMarBottom>
       <Card>
@@ -104,12 +147,6 @@ class MessageDB extends Component {
                 </Form.Group>
                 <Button type="submit" block>Submit</Button>
             </Form>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <div>{this.state.subject}</div>
-              <div>{this.state.msg}</div>
             </Col>
           </Row>
         </Container>

@@ -1,5 +1,6 @@
 type Child {
   beneficiary_id: String!
+  benefactor_id: String
   name: String
   age: Int
   date_of_birth: Int

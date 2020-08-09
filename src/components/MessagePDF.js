@@ -28,7 +28,7 @@ export class MyDoc extends Component {
       <Document>
         <Page>
         {this.props.data.messages.map(message => (
-          <View style={styles.section}>
+          <View key={message.data.title} style={styles.section}>
             <Text style={styles.bold}>{message.data.title}</Text>
             <Text>{message.data.msg}</Text>
           </View>
@@ -128,11 +128,18 @@ getAllChildren() {
 
  getMessagesByName() {
    console.log(this.state)
+   let data = this.state.name.split(" - ")
+   console.log(data)
    client.query(
      q.Map(
        q.Paginate(
-         q.Match(
-           q.Index('messagesByName'), this.state.name)),
+         q.Intersection(
+           q.Match(
+             q.Index('messagesByName'), data[0]),
+           q.Match(
+             q.Index('messagesByDateOfBirth'), data[1])
+         )
+       ),
        q.Lambda("Message",q.Get(q.Var("Message")))
      )
    )
@@ -165,7 +172,7 @@ getAllChildren() {
           >
             <option>------</option>
             {this.state.children.map(child => (
-              <option key={child.data.beneficiary_id}>{child.data.name}</option>
+              <option key={child.data.beneficiary_id}>{child.data.name} - {child.data.date_of_birth}</option>
             ))}
           </Form.Control>
           <br /><br />
@@ -181,7 +188,7 @@ getAllChildren() {
             <Form.Control as="select" custom value={this.state.value} onChange={this.handleInputChange}>
               <option>------</option>
               {this.state.children.map(child => (
-                <option key={child.data.beneficiary_id}>{child.data.name}</option>
+                <option key={child.data.beneficiary_id}>{child.data.name} - {child.data.date_of_birth}</option>
               ))}
             </Form.Control>
             <br /><br />
@@ -190,7 +197,7 @@ getAllChildren() {
 
           <PDFDownloadLink
             document={<MyDoc data={this.state} />}
-            fileName="somename.pdf">
+            fileName={this.state.name.replace(/ /g,'') + '.pdf'}>
             {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
           </PDFDownloadLink>
         </>
