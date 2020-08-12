@@ -22,7 +22,7 @@ const IndexPage = ({ data }) => {
 
 
 
-
+/*
 export const query = graphql`
 {
   fauna {
@@ -34,7 +34,7 @@ export const query = graphql`
   }
 }
 `
-
+*/
 
 
 
