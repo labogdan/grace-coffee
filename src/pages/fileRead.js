@@ -1,9 +1,9 @@
 import React from "react"
 import Header from "../components/header"
-import FileReader from "../components/fileReader"
+//import FileReader from "../components/fileReader"
 
 export default function FileRead() {
-  return (
+/*  return (
     <>
       <div style={{ color: `teal` }}>
       <Header headerText="File Reader" />
@@ -12,5 +12,5 @@ export default function FileRead() {
         <FileReader />
       </div>
     </>
-  )
+  )*/
 }
